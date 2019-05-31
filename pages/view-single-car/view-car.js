@@ -73,6 +73,7 @@ window.onload = function () {
             descspan.innerText = newdata.description
             pricing.innerText = newdata.price.toLocaleString()
             deletebtn.innerText = "Delete!"
+            // image.setAttribute('src', `images/image-${newdata.id}.jpg`)
             if (newdata.car_name === "mazda") {
                 image.setAttribute('src', '../../images/mazda.png')
             }
@@ -108,6 +109,26 @@ window.onload = function () {
             desktopcard.append(imagecontainer, mainfeatures, cardescription)
             hiddendiv.appendChild(desktopcard);
 
+            var deleteOne = document.getElementById(`deletedata-${carID}`);
+            deleteOne.addEventListener('click', deleteOneData)
+            function deleteOneData() {
+                console.log('delete')
+                let delOne = new XMLHttpRequest;
+                let choice = confirm("are you sure?")
+                if (choice == true) {
+                    delOne.open('DELETE', `http://localhost:3000/cars/${newdata.id}`, true)
+                    delOne.onload = function () {
+                        if (this.statusText === 'OK') {
+                            console.log(this.status);
+                            window.location.href = "../home/index.html"
+                        }
+                    }
+                    delOne.send()
+                } else {
+                    return false
+                }
+            }
+
             for (let j in details) {
                 console.log(details[0].color)
                 var mainfeatures_main = document.createElement('div');
@@ -123,8 +144,6 @@ window.onload = function () {
                 ul.append(year, li)
                 mainfeatures_main.appendChild(ul);
                 maincard.appendChild(mainfeatures_main)
-    
-               
             }
 
         }

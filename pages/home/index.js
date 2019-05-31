@@ -36,7 +36,7 @@ window.onload = function () {
                 mainfeatures.setAttribute('class', 'cards mainfeatures')
                 var header = document.createElement('a')
                 header.setAttribute('id', `viewdetails-${data[i].id}`)
-                header.setAttribute('href', 'view-car.html')
+                header.setAttribute('href', '../view-single-car/view-car.html')
                 var pricing = document.createElement('h2')
                 var image = document.createElement('img')
                 image.setAttribute('class', 'imgview')
