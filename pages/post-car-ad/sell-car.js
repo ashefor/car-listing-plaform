@@ -14,7 +14,10 @@ function submitform(e){
     ],
     data.description = document.getElementById('description').value;
     data.color = document.getElementById('color').value,
-    data.transmission = document.getElementById('transmission').value
+    data.transmission = document.getElementById('transmission').value;
+    data.mileage = document.getElementById('mileage').value;
+    data.fuel = document.getElementById('fuel').value;
+    data.contact = document.getElementById('contact').value.toString();
     let jsob = JSON.stringify(data)
     var request = new XMLHttpRequest();
     request.open('POST', 'http://localhost:3000/cars', true)
