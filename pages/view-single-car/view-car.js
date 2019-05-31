@@ -161,7 +161,8 @@ window.onload = function () {
                     document.getElementById('car_model').value = newdata.details[j].model_name
                     document.getElementById('car_price').value = newdata.price
                     document.getElementById('car_year').value = newdata.details[j].year
-                    document.getElementById('car_color').value = newdata.details[j].color
+                    document.getElementById('car_color').value = newdata.color
+                    document.getElementById('transmission_mode').value = newdata.transmission
                     document.getElementById('entry-id').value = newdata.id;
                     document.getElementById('car_description').value = newdata.description
                     document.querySelector('div.modal-content').addEventListener('keyup', showtext)
@@ -170,12 +171,12 @@ window.onload = function () {
                     obj.details = [
                         {
                             "model_name": document.getElementById('car_model').value,
-                            "year": document.getElementById('car_year').value,
-                            "color": document.getElementById('car_color').value,
-                            "transmission": document.getElementById('transmission_mode').value
+                            "year": document.getElementById('car_year').value
                         }
                     ],
                         obj.description = document.getElementById('car_description').value;
+                        obj.color = document.getElementById('car_color').value,
+                        obj.transmission = document.getElementById('transmission_mode').value
                     function showtext(e) {
                         //   console.log(e.target.value)
                         obj.car_name = document.getElementById('car_make').value;
