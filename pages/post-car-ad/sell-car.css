@@ -122,6 +122,10 @@ a:hover{
     display: flex;
     width: 100%;
 }
+#thirdrow{
+    display: flex;
+    width: 100%;
+}
 #formelements{
     width: 100%;
     display: block;
