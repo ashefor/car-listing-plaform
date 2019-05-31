@@ -1,0 +1,19 @@
+{
+  "name": "car-listing-plaform",
+  "version": "1.0.0",
+  "description": "A platform for find cars for sale",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashefor/car-listing-plaform.git"
+  },
+  "author": "Michael Ashefor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashefor/car-listing-plaform/issues"
+  },
+  "homepage": "https://github.com/ashefor/car-listing-plaform#readme"
+}
