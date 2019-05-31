@@ -82,7 +82,14 @@ body{
       background: white;
       /* box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.5); */
   }
- 
+  .car_description_container{
+      background: white;
+      margin-bottom: 50px;
+  }
+  .car_description{
+      padding: 20px;
+      display: block
+  }
   .cards{
       width: 100%;
       padding: 20px
@@ -92,7 +99,11 @@ body{
       background: wheat;
       position: relative
   }
-  
+  .onecarmainfeatures{
+      display: flex;
+      background: white;
+      /* position: relative */
+  }
   .mainfeatures a{
       color: unset;
       text-transform: capitalize;
@@ -230,14 +241,7 @@ body{
       top: 25%;
   }
   
-    
-    
-    /* .close:hover,
-    .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    } */
+  
     .imgview{
         width: 300px;
         height: 250px;
@@ -253,7 +257,31 @@ body{
         text-transform: capitalize;
   
     }
-  
+    .delete{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 20px;
+    }
+    
+  .deletethis{
+      background: red;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      outline: none;
+      color: white;
+      display: none
+  }
+  .editthis{
+      background: blue;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      outline: none;
+      color: white;
+      display: none
+  }
   .mainfeatures_header a{
       font-size: 50px;
       font-weight: 700;
