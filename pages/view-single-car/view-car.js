@@ -73,6 +73,7 @@ window.onload = function () {
             descspan.innerText = newdata.description
             pricing.innerText = newdata.price.toLocaleString()
             deletebtn.innerText = "Delete!"
+            // image.setAttribute('src', `images/image-${newdata.id}.jpg`)
             if (newdata.car_name === "mazda") {
                 image.setAttribute('src', '../../images/mazda.png')
             }
@@ -108,8 +109,28 @@ window.onload = function () {
             desktopcard.append(imagecontainer, mainfeatures, cardescription)
             hiddendiv.appendChild(desktopcard);
 
+            var deleteOne = document.getElementById(`deletedata-${carID}`);
+            deleteOne.addEventListener('click', deleteOneData)
+            function deleteOneData() {
+                console.log('delete')
+                let delOne = new XMLHttpRequest;
+                let choice = confirm("are you sure?")
+                if (choice == true) {
+                    delOne.open('DELETE', `http://localhost:3000/cars/${newdata.id}`, true)
+                    delOne.onload = function () {
+                        if (this.statusText === 'OK') {
+                            console.log(this.status);
+                            window.location.href = "../home/index.html"
+                        }
+                    }
+                    delOne.send()
+                } else {
+                    return false
+                }
+            }
+
             for (let j in details) {
-                console.log(details[0].color)
+                // console.log(details[0].color)
                 var mainfeatures_main = document.createElement('div');
                 mainfeatures_main.setAttribute('class', 'mainfeatures_details')
                 var ul = document.createElement('ul');
@@ -123,8 +144,104 @@ window.onload = function () {
                 ul.append(year, li)
                 mainfeatures_main.appendChild(ul);
                 maincard.appendChild(mainfeatures_main)
+
+
+                var modal = document.getElementById("myModal");
+
+                // Get the button that opens the modal
+                var editbtn = document.getElementById(`editdata-${carID}`);
     
-               
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+                let obj = {};
+    
+                editbtn.onclick = function () {
+                    modal.style.display = "block";
+                    document.getElementById('car_make').value = newdata.car_name
+                    document.getElementById('car_model').value = newdata.details[j].model_name
+                    document.getElementById('car_price').value = newdata.price
+                    document.getElementById('car_year').value = newdata.details[j].year
+                    document.getElementById('car_color').value = newdata.color
+                    document.getElementById('transmission_mode').value = newdata.transmission
+                    document.getElementById('entry-id').value = newdata.id;
+                    document.getElementById('car_description').value = newdata.description
+                    document.getElementById('fuel').value = newdata.fuel
+                    document.getElementById('mileage').value = newdata.mileage
+                    document.getElementById('contact').value = newdata.contact
+                    document.querySelector('div.modal-content').addEventListener('keyup', showtext)
+                    obj.car_name = document.getElementById('car_make').value;
+                    obj.price = parseInt(document.getElementById('car_price').value);
+                    obj.details = [
+                        {
+                            "model_name": document.getElementById('car_model').value,
+                            "year": document.getElementById('car_year').value
+                        }
+                    ],
+                        obj.description = document.getElementById('car_description').value;
+                        obj.color = document.getElementById('car_color').value,
+                        obj.transmission = document.getElementById('transmission_mode').value;
+                        obj.fuel = document.getElementById('fuel').value
+                        obj.mileage = document.getElementById('mileage').value
+                        obj.contact = document.getElementById('contact').value
+
+                        
+                        
+                    function showtext(e) {
+                          console.log(e.target.value)
+                        // console.log(selection)
+
+                        
+                        obj.car_name = document.getElementById('select_car').value;
+                        obj.price = parseInt(document.getElementById('car_price').value);
+                        obj.details = [
+                            {
+                                "model_name": document.getElementById('car_model').value,
+                                "year": document.getElementById('car_year').value,
+                            }
+                        ],
+                            obj.description = document.getElementById('car_description').value;
+                            obj.color = document.getElementById('car_color').value,
+                            obj.transmission = document.getElementById('transmission_mode').value;
+                            obj.fuel = document.getElementById('fuel').value
+                            obj.mileage = document.getElementById('mileage').value
+                            obj.contact = document.getElementById('contact').value
+                        // console.log(obj)
+                    }
+    
+    
+    
+    
+                    let editone = document.getElementById('editform')
+                    editone.addEventListener('submit', editvalues)
+    
+                    function editvalues(e) {
+                        e.preventDefault();
+                        e.stopPropagation()
+                        let entryid = document.getElementById('entry-id').value
+                        // alert(`http://localhost:3000/cars/${entryid}`)
+                        // console.log(arr[0])
+                        let editreq = new XMLHttpRequest();
+                        let jsob = JSON.stringify(obj)
+                        // console.log(jsob)
+                        editreq.open('PUT', `http://localhost:3000/cars/${entryid}`, true)
+                        editreq.setRequestHeader("Content-Type", "application/json");
+                        editreq.onreadystatechange = function () {
+                            if (this.status === 200 && this.readyState === 4) {
+                                // alert(jsob)
+                                window.location.reload()
+                            }
+                        }
+                        editreq.send(jsob)
+    
+                    }
+    
+    
+    
+                }
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
             }
 
         }
