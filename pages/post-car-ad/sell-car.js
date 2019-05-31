@@ -5,7 +5,6 @@ window.onload = function () {
     let fuel_type;
     let transmission_type;
     function selectacar(e){
-        // console.log(e.target.value)
         car_value = e.target.value;
         return car_value;
     }
@@ -49,20 +48,11 @@ window.onload = function () {
         request.open('POST', 'http://localhost:3000/cars', true)
         request.setRequestHeader("Content-Type", "application/json");
         request.onreadystatechange = function () {
-            if (this.status === 200 && this.readyState === 4) {
-                // window.location.href= 
-            }
-            else if (this.status === 201) {
+            if (this.status === 201 && this.readyState === 4) {
                 window.location.href = '../home/index.html'
             }
         }
         request.send(jsob)
     }
 
-    // let selectcar = document.getElementById('select_car')
-    // selectcar.addEventListener('change', selectacar)
-
-    // function selectacar(e){
-    //     console.log(e.target.value)
-    // }
 }

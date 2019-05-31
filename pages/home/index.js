@@ -9,21 +9,17 @@ window.onload = function () {
     let data;
     const maindiv = document.getElementById('show_cars')
     let xml = new XMLHttpRequest;
-    // url = 'http://localhost:3000/cars'
     xml.open('GET', url, true)
     xml.onreadystatechange = function () {
         if (this.status === 200 && this.readyState === 4) {
             data = JSON.parse(this.responseText)
-            // console.log(data)
             let details;
-            // let array = []
             if(data.length == 0){
                 document.getElementById('hide_cars').style.display = "block";
                 document.getElementById('show_cars').style.display = "none";
             }
             for (let i = 0; i < data.length; i++) {
                 details = data[i].details;
-                // array.push(data[i].id)
                 var desktopcard = document.createElement("div");
                 desktopcard.setAttribute('class', 'showallcars');
                 desktopcard.setAttribute('id', `showallcars-${data[i].id}`);

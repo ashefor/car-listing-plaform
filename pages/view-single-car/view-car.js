@@ -1,8 +1,6 @@
 window.onload = function () {
     let carID = localStorage.getItem('id')
     let newURL = `http://localhost:3000/cars/${carID}`
-    console.log(newURL)
-    console.log(carID)
     const hiddendiv = document.getElementById('hide_cars')
     let xml = new XMLHttpRequest();
     xml.open('GET', newURL, true)
@@ -10,8 +8,6 @@ window.onload = function () {
         if (this.status === 200 && this.readyState === 4) {
             let newdata = JSON.parse(this.response);
             let details = newdata.details
-            console.log(newdata.id)
-            console.log(newdata.car_name, newdata.price)
             var desktopcard = document.createElement("div");
             desktopcard.setAttribute('id', 'showonecar');
             var pricecontainer = document.createElement('div');
@@ -30,7 +26,6 @@ window.onload = function () {
             var header = document.createElement('h2')
             header.setAttribute('id', `viewdetails-${newdata.id}`)
             header.setAttribute('class', 'car_header')
-            // header.setAttribute('href', `http://localhost:3000/cars/${data[i].id}`)
             var mileage = document.createElement('ul');
             mileage.textContent = "mileage(km)"
             var mileageVal = document.createElement('li')
@@ -73,7 +68,6 @@ window.onload = function () {
             descspan.innerText = newdata.description
             pricing.innerText = newdata.price.toLocaleString()
             deletebtn.innerText = "Delete!"
-            // image.setAttribute('src', `images/image-${newdata.id}.jpg`)
             if (newdata.car_name === "mazda") {
                 image.setAttribute('src', '../../images/mazda.png')
             }
@@ -130,7 +124,6 @@ window.onload = function () {
             }
 
             for (let j in details) {
-                // console.log(details[0].color)
                 var mainfeatures_main = document.createElement('div');
                 mainfeatures_main.setAttribute('class', 'mainfeatures_details')
                 var ul = document.createElement('ul');
@@ -147,11 +140,7 @@ window.onload = function () {
 
 
                 var modal = document.getElementById("myModal");
-
-                // Get the button that opens the modal
                 var editbtn = document.getElementById(`editdata-${carID}`);
-    
-                // Get the <span> element that closes the modal
                 var span = document.getElementsByClassName("close")[0];
                 let obj = {};
     
@@ -188,7 +177,6 @@ window.onload = function () {
                         
                     function showtext(e) {
                           console.log(e.target.value)
-                        // console.log(selection)
 
                         
                         obj.car_name = document.getElementById('select_car').value;
@@ -205,7 +193,6 @@ window.onload = function () {
                             obj.fuel = document.getElementById('fuel').value
                             obj.mileage = document.getElementById('mileage').value
                             obj.contact = document.getElementById('contact').value
-                        // console.log(obj)
                     }
     
     
@@ -218,16 +205,12 @@ window.onload = function () {
                         e.preventDefault();
                         e.stopPropagation()
                         let entryid = document.getElementById('entry-id').value
-                        // alert(`http://localhost:3000/cars/${entryid}`)
-                        // console.log(arr[0])
                         let editreq = new XMLHttpRequest();
                         let jsob = JSON.stringify(obj)
-                        // console.log(jsob)
                         editreq.open('PUT', `http://localhost:3000/cars/${entryid}`, true)
                         editreq.setRequestHeader("Content-Type", "application/json");
                         editreq.onreadystatechange = function () {
                             if (this.status === 200 && this.readyState === 4) {
-                                // alert(jsob)
                                 window.location.reload()
                             }
                         }
@@ -238,7 +221,6 @@ window.onload = function () {
     
     
                 }
-                // When the user clicks on <span> (x), close the modal
                 span.onclick = function () {
                     modal.style.display = "none";
                 }
