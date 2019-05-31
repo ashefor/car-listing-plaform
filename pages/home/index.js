@@ -1,11 +1,18 @@
 
 window.onload = function () {
-    let url;
+    let url
+    if(localStorage.getItem("data")){
+        url = localStorage.getItem("data")
+    }else{
+        url = "http://localhost:3000/cars"
+    }
+    console.log(localStorage.getItem("data"))
+    let url2 = localStorage.getItem("data")
     let data;
     const maindiv = document.getElementById('show_cars')
     const editting = document.getElementById('editentry')
     let xml = new XMLHttpRequest;
-     url = 'http://localhost:3000/cars'
+    // let url = 'http://localhost:3000/cars?car_name=benz'
     xml.open('GET', url, true)
     xml.onreadystatechange = function () {
         if (this.status === 200 && this.readyState === 4) {
@@ -20,6 +27,7 @@ window.onload = function () {
             for (let i = 0; i < data.length; i++) {
                 details = data[i].details;
                 // array.push(data[i].id)
+                editting.setAttribute('class', `editentry-${data[i].id}`)
                 var desktopcard = document.createElement("div");
                 desktopcard.setAttribute('class', 'showallcars');
                 desktopcard.setAttribute('id', `showallcars-${data[i].id}`);
@@ -59,28 +67,28 @@ window.onload = function () {
                 deletebtn.innerText = "Delete!"
                 viewcontact.innerText = "contact seller"
                 if (data[i].car_name === "mazda") {
-                    image.setAttribute('src', '../../images/mazda.png')
+                    image.setAttribute('src', 'images/mazda.png')
                 }
                 else if (data[i].car_name === "bugatti") {
-                    image.setAttribute('src', '../../images/bugatti2.png')
+                    image.setAttribute('src', 'images/bugatti2.png')
                 }
                 else if (data[i].car_name === "toyota") {
-                    image.setAttribute('src', '../../images/toyota.png')
+                    image.setAttribute('src', 'images/toyota.png')
                 }
                 else if (data[i].car_name === "honda") {
-                    image.setAttribute('src', '../../images/honda.png')
+                    image.setAttribute('src', 'images/honda.png')
                 }
                 else if (data[i].car_name === "ferrari") {
-                    image.setAttribute('src', '../../images/ferrari2.png')
+                    image.setAttribute('src', 'images/ferrari2.png')
                 }
                 else if (data[i].car_name === "bmw") {
-                    image.setAttribute('src', '../../images/bmw.png')
+                    image.setAttribute('src', 'images/bmw.png')
                 }
                 else if (data[i].car_name === "range") {
-                    image.setAttribute('src', '../../images/range.png')
+                    image.setAttribute('src', 'images/range.png')
                 }
                 else if (data[i].car_name === "benz") {
-                    image.setAttribute('src', '../../images/benz.png')
+                    image.setAttribute('src', 'images/benz.png')
                 }
                 imagecontainer.append(image);
                 cardheader.append(header);
@@ -93,9 +101,8 @@ window.onload = function () {
                 maindiv.appendChild(desktopcard);
                 // console.log(array)
                 // console.log(array[i])
-           
+                
                 for (let y in details) {
-                    // console.log(details[y])
                     var mainfeatures_main = document.createElement('div');
                     mainfeatures_main.setAttribute('class', 'mainfeatures_details')
                     var ul = document.createElement('ul');
@@ -108,33 +115,22 @@ window.onload = function () {
                     ul.append(li, year, transmission)
                     mainfeatures_main.appendChild(ul);
                     maincard.appendChild(mainfeatures_main)
-                    // console.log(mainfeatures)
                 }
+
+                let viewpost = document.getElementById(`showallcars-${data[i].id}`);
+                viewpost.addEventListener('click', showdetails)
+                function showdetails(e){
+                    console.log(data[i].id)
+                    console.log(e.target)
+                    localStorage.setItem("id", data[i].id)
+                    window.location.href = 'view-car.html'
+                }
+
             }
+
         }
     }
     xml.send();
 
-    let searchcar = document.getElementById('choicechecklist')
-    searchcar.addEventListener('click', search)
-    function search(e){
-        // console.log(e)
-        if(e.target.checked == true){
-            let searchvalue = e.target.value
-            // console.log(searchvalue)
-            let newsearch = new XMLHttpRequest
-            url =`http://localhost:3000/cars?car_name=${searchvalue}`
-            console.log(url)
-            newsearch.open('GET', url, true)
-            newsearch.onreadystatechange = function(){
-                if(this.status === 200 && this.readyState == 4){
-                    data = JSON.parse(this.responseText)
-                    localStorage.setItem("data", url)
-                    window.location.reload()
-                }
-            }
-            newsearch.send()
-        }
-    }
-
+    
 }
