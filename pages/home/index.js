@@ -1,11 +1,15 @@
 
 window.onload = function () {
     let url
+    if(localStorage.getItem("data")){
+        url = localStorage.getItem("data")
+    }else{
+        url = "http://localhost:3000/cars"
+    }
     let data;
     const maindiv = document.getElementById('show_cars')
-    const editting = document.getElementById('editentry')
     let xml = new XMLHttpRequest;
-    url = 'http://localhost:3000/cars'
+    // url = 'http://localhost:3000/cars'
     xml.open('GET', url, true)
     xml.onreadystatechange = function () {
         if (this.status === 200 && this.readyState === 4) {
@@ -124,5 +128,32 @@ window.onload = function () {
     }
     xml.send();
 
+    let searchcar = document.getElementById('choicechecklist')
+    searchcar.addEventListener('click', search)
+    function search(e){
+        // console.log(e)
+        if(e.target.checked == true){
+            let searchvalue = e.target.value
+            // console.log(searchvalue)
+            let newsearch = new XMLHttpRequest
+            url =`http://localhost:3000/cars?car_name=${searchvalue}`
+            console.log(url)
+            newsearch.open('GET', url, true)
+            newsearch.onreadystatechange = function(){
+                if(this.status === 200 && this.readyState == 4){
+                    data = JSON.parse(this.responseText)
+                    localStorage.setItem("data", url)
+                    window.location.reload()
+                }
+            }
+            newsearch.send()
+        }
+    }
+
+    let home = document.getElementById('gohome')
+    home.addEventListener('click', gohome)
+    function gohome(){
+        localStorage.clear()
+    }
     
 }
