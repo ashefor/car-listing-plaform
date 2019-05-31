@@ -1,11 +1,11 @@
 
 window.onload = function () {
-    let url;
+    let url
     let data;
     const maindiv = document.getElementById('show_cars')
     const editting = document.getElementById('editentry')
     let xml = new XMLHttpRequest;
-     url = 'http://localhost:3000/cars'
+    url = 'http://localhost:3000/cars'
     xml.open('GET', url, true)
     xml.onreadystatechange = function () {
         if (this.status === 200 && this.readyState === 4) {
@@ -93,9 +93,8 @@ window.onload = function () {
                 maindiv.appendChild(desktopcard);
                 // console.log(array)
                 // console.log(array[i])
-           
+                
                 for (let y in details) {
-                    // console.log(details[y])
                     var mainfeatures_main = document.createElement('div');
                     mainfeatures_main.setAttribute('class', 'mainfeatures_details')
                     var ul = document.createElement('ul');
@@ -108,33 +107,22 @@ window.onload = function () {
                     ul.append(li, year, transmission)
                     mainfeatures_main.appendChild(ul);
                     maincard.appendChild(mainfeatures_main)
-                    // console.log(mainfeatures)
                 }
+
+                let viewpost = document.getElementById(`showallcars-${data[i].id}`);
+                viewpost.addEventListener('click', showdetails)
+                function showdetails(e){
+                    console.log(data[i].id)
+                    console.log(e.target)
+                    localStorage.setItem("id", data[i].id)
+                    window.location.href = '../view-single-car/view-car.html'
+                }
+
             }
+
         }
     }
     xml.send();
 
-    let searchcar = document.getElementById('choicechecklist')
-    searchcar.addEventListener('click', search)
-    function search(e){
-        // console.log(e)
-        if(e.target.checked == true){
-            let searchvalue = e.target.value
-            // console.log(searchvalue)
-            let newsearch = new XMLHttpRequest
-            url =`http://localhost:3000/cars?car_name=${searchvalue}`
-            console.log(url)
-            newsearch.open('GET', url, true)
-            newsearch.onreadystatechange = function(){
-                if(this.status === 200 && this.readyState == 4){
-                    data = JSON.parse(this.responseText)
-                    localStorage.setItem("data", url)
-                    window.location.reload()
-                }
-            }
-            newsearch.send()
-        }
-    }
-
+    
 }
