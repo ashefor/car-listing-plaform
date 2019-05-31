@@ -1,0 +1,140 @@
+window.onload = function () {
+    let carID = localStorage.getItem('id')
+    let newURL = `http://localhost:3000/cars/${carID}`
+    console.log(newURL)
+    console.log(carID)
+    const hiddendiv = document.getElementById('hide_cars')
+    let xml = new XMLHttpRequest();
+    xml.open('GET', newURL, true)
+    xml.onreadystatechange = function () {
+        if (this.status === 200 && this.readyState === 4) {
+            let newdata = JSON.parse(this.response);
+            let details = newdata.details
+            console.log(newdata.id)
+            console.log(newdata.car_name, newdata.price)
+            var desktopcard = document.createElement("div");
+            desktopcard.setAttribute('id', 'showonecar');
+            var pricecontainer = document.createElement('div');
+            pricecontainer.setAttribute('class', 'pricing')
+            var maincard = document.createElement('div')
+            maincard.setAttribute('id', 'maincard')
+            var deletecard = document.createElement('div');
+            deletecard.setAttribute('class', 'delete')
+            var cardheader = document.createElement("div");
+            cardheader.setAttribute('class', 'mainfeatures_header')
+            var imagecontainer = document.createElement("div");
+            var mainfeatures = document.createElement("div");
+            mainfeatures.setAttribute('class', 'cards onecarmainfeatures')
+            var cardescription = document.createElement("div");
+            cardescription.setAttribute('class', 'car_description_container')
+            var header = document.createElement('h2')
+            header.setAttribute('id', `viewdetails-${newdata.id}`)
+            header.setAttribute('class', 'car_header')
+            // header.setAttribute('href', `http://localhost:3000/cars/${data[i].id}`)
+            var mileage = document.createElement('ul');
+            mileage.textContent = "mileage(km)"
+            var mileageVal = document.createElement('li')
+            mileageVal.innerText = newdata.mileage;
+            mileage.appendChild(mileageVal)
+            var color = document.createElement('ul');
+            color.textContent = "color"
+            var colorVal = document.createElement('li')
+            colorVal.innerText = newdata.color;
+            color.append(colorVal)
+            var transmission = document.createElement('ul');
+            transmission.textContent = "transmission"
+            var transmissionVal = document.createElement('li');
+            transmissionVal.innerText = newdata.transmission;
+            transmission.append(transmissionVal)
+            var fuel = document.createElement('ul');
+            fuel.textContent = "fuel"
+            var fuelType = document.createElement('li')
+            fuelType.innerText = newdata.fuel
+            fuel.append(fuelType)
+            var pricing = document.createElement('h2')
+            var image = document.createElement('img')
+            image.setAttribute('class', 'onecar_imgview')
+            var deletebtn = document.createElement('button');
+            var descspan = document.createElement('span')
+            var overviewdetails = document.createElement('h4')
+            overviewdetails.setAttribute('class', 'overview_details')
+            var descHeader = document.createElement('h4')
+            descHeader.setAttribute('class', 'desc_header')
+            descspan.setAttribute('class', 'car_description')
+            deletebtn.setAttribute('id', `deletedata-${newdata.id}`)
+            deletebtn.setAttribute('class', 'deletethis')
+            var editntn = document.createElement('button')
+            editntn.innerText = "Edit"
+            editntn.setAttribute('id', `editdata-${newdata.id}`)
+            editntn.setAttribute('class', 'editthis')
+            header.innerText = newdata.car_name;
+            descHeader.innerText = "car description"
+            overviewdetails.innerText = 'overview'
+            descspan.innerText = newdata.description
+            pricing.innerText = newdata.price.toLocaleString()
+            deletebtn.innerText = "Delete!"
+            if (newdata.car_name === "mazda") {
+                image.setAttribute('src', '../../images/mazda.png')
+            }
+            else if (newdata.car_name === "bugatti") {
+                image.setAttribute('src', '../../images/bugatti2.png')
+            }
+            else if (newdata.car_name === "toyota") {
+                image.setAttribute('src', '../../images/toyota.png')
+            }
+            else if (newdata.car_name === "honda") {
+                image.setAttribute('src', '../../images/honda.png')
+            }
+            else if (newdata.car_name === "ferrari") {
+                image.setAttribute('src', '../../images/ferrari2.png')
+            }
+            else if (newdata.car_name === "bmw") {
+                image.setAttribute('src', '../../images/bmw.png')
+            }
+            else if (newdata.car_name === "range") {
+                image.setAttribute('src', '../../images/range.png')
+            }
+            else if (newdata.car_name === "benz") {
+                image.setAttribute('src', '../../images/benz.png')
+            }
+            cardescription.append(descHeader,descspan)
+            imagecontainer.append(image);
+            cardheader.append(header);
+            mainfeatures.append(cardheader);
+            maincard.append(cardheader);
+            pricecontainer.append(pricing, mileage, color, fuel, transmission);
+            deletecard.append(deletebtn, editntn)
+            mainfeatures.append(maincard, pricecontainer, deletecard)
+            desktopcard.append(imagecontainer, mainfeatures, cardescription)
+            hiddendiv.appendChild(desktopcard);
+
+            for (let j in details) {
+                console.log(details[0].color)
+                var mainfeatures_main = document.createElement('div');
+                mainfeatures_main.setAttribute('class', 'mainfeatures_details')
+                var ul = document.createElement('ul');
+                var dl =  document.createElement('dl')
+                var dt = document.createElement('label');
+                var dd = document.createElement('span')
+                var li = document.createElement('li');
+                var year = document.createElement('li');
+                li.innerText = details[j].model_name;
+                year.innerText = details[j].year;
+                ul.append(year, li)
+                mainfeatures_main.appendChild(ul);
+                maincard.appendChild(mainfeatures_main)
+    
+               
+            }
+
+        }
+    }
+    xml.send()
+
+
+
+
+
+}
+
+
