@@ -248,6 +248,10 @@ a:hover{
     display: flex;
     width: 100%;
 }
+#thirdrow{
+    display: flex;
+    width: 100%;
+}
 #formelements{
     width: 100%;
     display: block;
@@ -323,9 +327,6 @@ textarea{
     #body_container{
         max-width: 100%
     }
-    /* #mainbody{
-        max-width: 100%
-    } */
     #show_cars{
         display: block;
         grid-column-gap: 10px;
@@ -345,11 +346,6 @@ textarea{
         margin-top: 10px;
         margin-bottom: 10px;
     }
-    /* #body_content{
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    } */
     .space_content{
         display: block;
         width: 100%;
@@ -395,6 +391,28 @@ textarea{
     #hide_cars{
         padding: 5px
     }
+    .modal-content{
+        width: 100%
+    }
+    #formelements{
+        padding: 5px
+    }
+    #firstrow{
+        display: block !important
+    }
+    #secondrow{
+        display: block !important
+    }
+    #thirdrow{
+        display: block !important
+    }
+    #descriptionarea{
+        width: 100%;
+        padding: 5px
+    }
+    textarea{
+        padding: 5px !important
+    }
 }
 @media only screen and (min-width: 480px) and (max-width: 767px){
     #navbar{
@@ -403,9 +421,6 @@ textarea{
     #body_container{
         max-width: 100%
     }
-    /* #mainbody{
-        max-width: 100%
-    } */
     #show_cars{
         display: block;
         grid-column-gap: 10px;
@@ -425,11 +440,6 @@ textarea{
         margin-top: 10px;
         margin-bottom: 10px;
     }
-    /* #body_content{
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    } */
     .space_content{
         display: block;
         width: 100%;
@@ -473,6 +483,33 @@ textarea{
         margin-top: unset
     }
     #hide_cars{
-        padding: 20px
+        padding: 5px
+    }
+    .modal-content{
+        width: 100%
+    }
+    #formelements{
+        padding: 5px
+    }
+    #firstrow{
+        display: block !important
+    }
+    #secondrow{
+        display: block !important
+    }
+    #thirdrow{
+        display: block !important
+    }
+    #descriptionarea{
+        width: 100%;
+        padding: 5px
+    }
+    textarea{
+        padding: 5px !important
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px){
+    .modal-content{
+        width: 95%
     }
 }

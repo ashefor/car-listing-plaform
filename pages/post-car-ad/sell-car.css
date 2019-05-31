@@ -190,6 +190,16 @@ textarea{
     #secondrow{
         display: block !important
     }
+    #thirdrow{
+        display: block !important
+    }
+    #descriptionarea{
+        width: 100%;
+        padding: 5px
+    }
+    textarea{
+        padding: 5px !important
+    }
 }
 @media only screen and (min-width: 480px) and (max-width: 767px){
     #navbar{
@@ -225,6 +235,16 @@ textarea{
     }
     #secondrow{
         display: block !important
+    }
+    #thirdrow{
+        display: block !important
+    }
+    #descriptionarea{
+        width: 100%;
+        padding: 5px
+    }
+    textarea{
+        padding: 5px !important
     }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px){

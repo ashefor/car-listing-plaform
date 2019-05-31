@@ -130,7 +130,7 @@ window.onload = function () {
             }
 
             for (let j in details) {
-                console.log(details[0].color)
+                // console.log(details[0].color)
                 var mainfeatures_main = document.createElement('div');
                 mainfeatures_main.setAttribute('class', 'mainfeatures_details')
                 var ul = document.createElement('ul');
@@ -165,6 +165,9 @@ window.onload = function () {
                     document.getElementById('transmission_mode').value = newdata.transmission
                     document.getElementById('entry-id').value = newdata.id;
                     document.getElementById('car_description').value = newdata.description
+                    document.getElementById('fuel').value = newdata.fuel
+                    document.getElementById('mileage').value = newdata.mileage
+                    document.getElementById('contact').value = newdata.contact
                     document.querySelector('div.modal-content').addEventListener('keyup', showtext)
                     obj.car_name = document.getElementById('car_make').value;
                     obj.price = parseInt(document.getElementById('car_price').value);
@@ -176,20 +179,32 @@ window.onload = function () {
                     ],
                         obj.description = document.getElementById('car_description').value;
                         obj.color = document.getElementById('car_color').value,
-                        obj.transmission = document.getElementById('transmission_mode').value
+                        obj.transmission = document.getElementById('transmission_mode').value;
+                        obj.fuel = document.getElementById('fuel').value
+                        obj.mileage = document.getElementById('mileage').value
+                        obj.contact = document.getElementById('contact').value
+
+                        
+                        
                     function showtext(e) {
-                        //   console.log(e.target.value)
-                        obj.car_name = document.getElementById('car_make').value;
+                          console.log(e.target.value)
+                        // console.log(selection)
+
+                        
+                        obj.car_name = document.getElementById('select_car').value;
                         obj.price = parseInt(document.getElementById('car_price').value);
                         obj.details = [
                             {
                                 "model_name": document.getElementById('car_model').value,
                                 "year": document.getElementById('car_year').value,
-                                "color": document.getElementById('car_color').value,
-                                "transmission": document.getElementById('transmission_mode').value
                             }
                         ],
                             obj.description = document.getElementById('car_description').value;
+                            obj.color = document.getElementById('car_color').value,
+                            obj.transmission = document.getElementById('transmission_mode').value;
+                            obj.fuel = document.getElementById('fuel').value
+                            obj.mileage = document.getElementById('mileage').value
+                            obj.contact = document.getElementById('contact').value
                         // console.log(obj)
                     }
     
