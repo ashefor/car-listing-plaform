@@ -1,0 +1,175 @@
+#body_container{
+    background: #f2f2f2
+}
+#navbar{
+    background: grey;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.navbar_div{
+    display: flex;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.add_cars{
+    margin-left: auto;
+    
+}
+.add_cars button{
+    color: white;
+    border: 1px solid black
+}
+.add_cars a{
+    color: white;
+}
+a:hover{
+    text-decoration: none !important
+}
+.go_Home a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase
+}
+#mainbody{
+    margin-top: 50px;
+    /* margin-bottom: 50px; */
+    /* background: #f2f2f2 */
+}
+#body_content{
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    /* height: 100vh; */
+}
+.space_content{
+    display: flex
+}
+
+
+
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    margin-top: 50px;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    width: fit-content;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .imgview{
+      width: 300px;
+      height: auto;
+      padding: 20px
+  }
+  .onecar_imgview{
+    /* width: 500px; */
+    width: 50%;
+    height: auto;
+    padding: 20px
+  }
+  .car_header{
+      text-transform: capitalize;
+
+  }
+  .delete{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+  }
+  .delete button:last-child{
+      margin-left: 20px
+  }
+  #firstrow{
+      display: flex;
+      width: 100%;
+  }
+  #secondrow{
+    display: flex;
+    width: 100%;
+}
+#formelements{
+    width: 100%;
+    display: block;
+    padding: 20px
+}
+#formelements label{
+    width: 100%;
+    font-weight: 700
+}
+#formelements input{
+    width: 100%;
+    padding: 10px
+}
+#formelements .input-group #price{
+    width: 88% !important;
+    padding: 10px
+}
+#formelements .input-group span{
+    font-size: 35px
+}
+#descriptionarea{
+    width: 100%;
+    display: block;
+    padding: 20px;
+}
+#descriptionarea label{
+    width: 100%;
+    font-weight: 700
+}
+#descriptionarea textarea{
+    width: 100%;
+    padding: 10px
+}
+textarea{
+    resize: none
+}
+#editentry{
+    float: right;
+    margin-right: 20px
+}
+#maincard{
+    position: absolute;
+    right: 0;
+    top: 0;
+    /* margin: 35px; */
+    width: auto;
+}
+#submitbutton{
+    float: right;
+    margin-right: 20px;
+}
