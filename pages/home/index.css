@@ -39,6 +39,7 @@ body{
   }
   #mainbody{
       margin-top: 50px;
+      /* height: 100vh; */
       /* margin-bottom: 50px; */
       /* background: #f2f2f2 */
   }
@@ -58,7 +59,10 @@ body{
       width: 75%
   }
   #hide_cars{
-      width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 25px;
+    width: 75%
   }
   #hide_cars h2{
       text-align: center
@@ -152,7 +156,8 @@ body{
       cursor: pointer;
       /* border-radius: 7px; */
       transition: all 0.25s ease-out;
-      margin-bottom: unset !important
+      margin-bottom: unset !important;
+      position: relative;
     }
     
     .lbl-toggle:hover {
@@ -161,6 +166,9 @@ body{
     }
     
     .lbl-toggle::after {
+        position: absolute;
+        right: 5%;
+        top: 35%;
       content: ' ';
       display: inline-block;
       border-top: 5px solid transparent;

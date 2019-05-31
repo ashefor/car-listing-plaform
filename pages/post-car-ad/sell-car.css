@@ -112,6 +112,10 @@ a:hover{
     width: 100%;
     padding: 10px
 }
+select{
+    padding: 10px;
+    width: 100%
+}
 #formelements .input-group #price{
     width: 88% !important;
     padding: 10px
